@@ -1,10 +1,11 @@
-import React from "react";
+import React, { Fragment, useState } from "react";
 import LayoutProps from "./interfaceLayout";
 import Navbar from "./navbar/Navbar";
-import Login from "./auth/Login";
+
 function Layout({ children }: LayoutProps) {
   return (
     <>
+      <Navbar />
       <main>{children}</main>
     </>
   );
