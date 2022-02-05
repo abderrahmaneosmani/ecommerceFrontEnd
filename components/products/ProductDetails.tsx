@@ -1,6 +1,20 @@
 import React from "react";
-
+import { useDispatch } from "react-redux";
+import { saveItem, addToCart } from "../../features/shoppingCart/cart-slice";
 function ProductDetails({ product }: any) {
+  const dispatch = useDispatch();
+  const addProduct = async () => {
+    const { id, price } = product;
+    product.quantity = 1;
+
+    const cartItem: any = {
+      productId: id,
+      totalPrice: price + "",
+    };
+
+    dispatch(saveItem(cartItem));
+    dispatch(addToCart(product));
+  };
   return (
     <>
       <div className="max-w-2xl mx-auto">
@@ -8,14 +22,14 @@ function ProductDetails({ product }: any) {
           <a href="#">
             <img
               className="rounded-t-lg p-8"
-              src={product.image}
-              alt={product.image}
+              src={product.url}
+              alt={product.url}
             />
           </a>
           <div className="px-5 pb-5">
             <a href="#">
               <h3 className="text-gray-900 font-semibold text-xl tracking-tight dark:text-white">
-                {product.title}
+                {product.name}
               </h3>
             </a>
             <div className="flex items-center mt-2.5 mb-5">
@@ -68,7 +82,7 @@ function ProductDetails({ product }: any) {
                 ${product.price}
               </span>
               <a
-                href="#"
+                onClick={addProduct}
                 className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
               >
                 Add to cart
@@ -76,19 +90,6 @@ function ProductDetails({ product }: any) {
             </div>
           </div>
         </div>
-
-        <p className="mt-5">
-          This card component is part of a larger, open-source library of
-          Tailwind CSS components. Learn more by going to the official{" "}
-          <a
-            className="text-blue-600 hover:underline"
-            href="https://flowbite.com/docs/getting-started/introduction/"
-            target="_blank"
-          >
-            Flowbite Documentation
-          </a>
-          .
-        </p>
       </div>
     </>
   );

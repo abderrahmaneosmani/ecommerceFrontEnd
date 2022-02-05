@@ -1,6 +1,5 @@
 import React from "react";
 import ProductList from "../../components/products/ProductsList";
-
 function products({ products }) {
   return (
     <div>
@@ -9,7 +8,7 @@ function products({ products }) {
   );
 }
 export const getStaticProps = async () => {
-  const res = await fetch("https://fakestoreapi.com/products");
+  const res = await fetch("http://localhost:3000/api/products");
   const products = await res.json();
 
   return {

@@ -10,7 +10,7 @@ function ProductList({ products }: any) {
           {products.map((product: any) => (
             // eslint-disable-next-line react/jsx-key
             // eslint-disable-next-line @next/next/no-html-link-for-pages
-
+            // eslint-disable-next-line react/jsx-key
             <Link href="products/id" as={`/products/${product.id}`}>
               <a>
                 <ProductItem product={product} />
