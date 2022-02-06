@@ -6,18 +6,17 @@ import { unwrapResult } from "@reduxjs/toolkit";
 function ProductDetails({ product }: any) {
   const dispatch = useDispatch();
   const addProduct = async () => {
-    const { id, price } = product;
-    product.quantity = 1;
+    const { id, price, image } = product;
+
     const cartItem: any = {
       productId: id,
       totalPrice: price + "",
+      image,
     };
 
     const res = await dispatch(saveItem(cartItem));
-    const result = await unwrapResult(res);
-    const { id: cartItemId } = result;
-    product.cartItemId = cartItemId;
-    dispatch(addToCart(product));
+    const result: any = await unwrapResult(res);
+    dispatch(addToCart(result));
   };
   return (
     <>
@@ -26,14 +25,14 @@ function ProductDetails({ product }: any) {
           <a href="#">
             <img
               className="rounded-t-lg p-8"
-              src={product.url}
-              alt={product.url}
+              src={product.image}
+              alt={product.image}
             />
           </a>
           <div className="px-5 pb-5">
             <a href="#">
               <h3 className="text-gray-900 font-semibold text-xl tracking-tight dark:text-white">
-                {product.name}
+                {product.title}
               </h3>
             </a>
             <div className="flex items-center mt-2.5 mb-5">

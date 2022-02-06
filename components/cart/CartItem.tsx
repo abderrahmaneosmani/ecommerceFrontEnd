@@ -6,30 +6,34 @@ import {
   deleteItem,
 } from "../../features/shoppingCart/cart-slice";
 import { useDispatch } from "react-redux";
-function CartItem({ product }) {
+function CartItem({ item }) {
+  console.log("item is", item);
+
   //remove cartitem
   const dispatch = useDispatch();
 
   const remove = () => {
-    dispatch(deleteItem);
-    dispatch(removeItem(product.cartItemId));
+    dispatch(deleteItem(item.id));
+    dispatch(removeItem(item.id));
   };
 
-  //increase quantity of product inside cartitem
+  //increase quantity of item inside cartitem
   const incrementQuantity = () => {
-    dispatch(increaseQuantity(product.id));
+    dispatch(increaseQuantity(item.id));
   };
   const decrementQuantity = () => {
-    dispatch(desIncreaseQuantity(product.id));
+    dispatch(desIncreaseQuantity(item.id));
   };
+
+  const totalPrice = +item.totalPrice * +item.quantity;
 
   return (
     <div>
-      <li key={product.id} className="py-6 flex">
+      <li key={item.id} className="py-6 flex">
         <div className="flex-shrink-0 w-24 h-24 border border-gray-200 rounded-md overflow-hidden">
           <img
-            src={product.url}
-            alt={product.url}
+            src={item.image}
+            alt={item.image}
             className="w-full h-full object-center object-cover"
           />
         </div>
@@ -38,13 +42,11 @@ function CartItem({ product }) {
           <div>
             <div className="flex justify-between text-base font-medium text-gray-900">
               <h3>
-                <a href={product.href}>{product.name}</a>
+                <a href={item.href}>{item.name}</a>
               </h3>
-              <p className="ml-4">
-                {Number(product.price) * Number(product.quantity)}
-              </p>
+              <p className="ml-4">{totalPrice}</p>
             </div>
-            <p className="mt-1 text-sm text-gray-500">{product.name}</p>
+            <p className="mt-1 text-sm text-gray-500">{item.title}</p>
           </div>
           <div className="flex-1 flex items-end justify-between text-sm">
             <button
@@ -53,7 +55,7 @@ function CartItem({ product }) {
             >
               +
             </button>
-            <p className="text-gray-500">Qty {product.quantity}</p>
+            <p className="text-gray-500">Qty {+item.quantity}</p>
             <button
               className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
               onClick={decrementQuantity}

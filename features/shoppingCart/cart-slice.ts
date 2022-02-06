@@ -65,9 +65,12 @@ export const saveItem = createAsyncThunk(
 export const deleteItem = createAsyncThunk(
   "deleteItem",
   async (req: any, thunkAPI) => {
-    const cartItemId = req.cartItemId;
+    const cartItemId = req;
     const response = await fetch(
-      `http://localhost:9000/cartitems/${cartItemId}`
+      `http://localhost:9000/cartitems/${cartItemId}`,
+      {
+        method: "DELETE",
+      }
     );
     return response.json();
   }
@@ -77,10 +80,10 @@ const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    addToCart(state: any, action: PayloadAction) {
-      console.log("action payload", action.payload);
+    addToCart(state: any, action: any) {
+      const itemIndex = getIndexItem(state, action.payload.productId);
+      console.log("item index is", itemIndex);
 
-      const itemIndex = getIndexItem(state, action.payload.id);
       if (itemIndex && itemIndex < 0) {
         state.cartItems.push(action.payload);
       } else {
@@ -91,12 +94,11 @@ const cartSlice = createSlice({
       localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
     },
 
-    increaseQuantity: (state: any, action: PayloadAction<any>) => {
+    increaseQuantity: (state: any, action: any) => {
       const itemIndex = getIndexItem(state, action.payload);
       const oldItems = state.cartItems[itemIndex];
+
       oldItems.quantity += 1;
-      const total = Number(oldItems.quantity * oldItems.price);
-      oldItems.totalPrice = total;
       state.cartItems[itemIndex] = oldItems;
       localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
     },
@@ -104,8 +106,6 @@ const cartSlice = createSlice({
       const itemIndex = getIndexItem(state, action.payload);
       const oldItems = state.cartItems[itemIndex];
       if (oldItems.quantity > 1) oldItems.quantity -= 1;
-      const total = Number(oldItems.quantity * oldItems.price);
-      oldItems.totalPrice = total;
       state.cartItems[itemIndex] = oldItems;
       localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
     },

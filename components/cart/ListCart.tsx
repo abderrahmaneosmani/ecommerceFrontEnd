@@ -4,7 +4,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import { XIcon } from "@heroicons/react/outline";
 import CartItem from "./CartItem";
 
-export default function ListCart({ products, totalPirce }) {
+export default function ListCart({ products, totalPrice }) {
   const [open, setOpen] = useState(true);
 
   return (
@@ -64,7 +64,7 @@ export default function ListCart({ products, totalPirce }) {
                         >
                           {products.map((product) => (
                             // eslint-disable-next-line react/jsx-key
-                            <CartItem product={product} />
+                            <CartItem item={product} />
                           ))}
                         </ul>
                       </div>
@@ -74,7 +74,7 @@ export default function ListCart({ products, totalPirce }) {
                   <div className="border-t border-gray-200 py-6 px-4 sm:px-6">
                     <div className="flex justify-between text-base font-medium text-gray-900">
                       <p>Subtotal</p>
-                      <p>${totalPirce}</p>
+                      <p>${totalPrice}</p>
                     </div>
                     <p className="mt-0.5 text-sm text-gray-500">
                       Shipping and taxes calculated at checkout.
