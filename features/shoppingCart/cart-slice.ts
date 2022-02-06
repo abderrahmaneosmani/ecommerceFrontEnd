@@ -1,6 +1,6 @@
-import { getUserId } from "./../../utils/getUserId";
 import { createSlice, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { stat } from "fs";
 import authHeader from "../auth/auth-header";
 const token = authHeader();
 
@@ -58,13 +58,18 @@ export const saveItem = createAsyncThunk(
 
     const response = await axios(config);
     const myData = response.data;
+    return myData;
   }
 );
 
 export const deleteItem = createAsyncThunk(
   "deleteItem",
   async (req: any, thunkAPI) => {
-    const response = await fetch(``);
+    const cartItemId = req.cartItemId;
+    const response = await fetch(
+      `http://localhost:9000/cartitems/${cartItemId}`
+    );
+    return response.json();
   }
 );
 
@@ -73,8 +78,9 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addToCart(state: any, action: PayloadAction) {
-      const itemIndex = getIndexItem(state, action.payload.id);
+      console.log("action payload", action.payload);
 
+      const itemIndex = getIndexItem(state, action.payload.id);
       if (itemIndex && itemIndex < 0) {
         state.cartItems.push(action.payload);
       } else {
@@ -121,20 +127,30 @@ const cartSlice = createSlice({
     removeItem(state: any, action: PayloadAction<any>) {
       state.cartQuantity += -1;
       const mycart: any = state.cartItems.filter(
-        (cart: any) => cart.id !== action.payload
+        (cart: any) => cart.cartItemId !== action.payload
       );
       state.cartItems = mycart;
       localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(saveItem.fulfilled, (state, action) => {});
+    builder.addCase(saveItem.fulfilled, (state, action: any) => {
+      //state.cartItems.push(action.payload);
+    });
     builder.addCase(getAllCartItems.fulfilled, (state, action: any) => {
       state.cartItems = action.payload;
+      // localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
+    });
+    builder.addCase(deleteItem.fulfilled, (state: any, action) => {
+      const mycart = state.cartItems.filter(
+        (item: any) => item.cartItemId !== action.payload.cartItemId
+      );
+      state.cartItems = mycart;
       localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
     });
   },
 });
+
 export const {
   addToCart,
   removeItem,

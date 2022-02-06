@@ -1,18 +1,22 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { saveItem, addToCart } from "../../features/shoppingCart/cart-slice";
+import { unwrapResult } from "@reduxjs/toolkit";
+
 function ProductDetails({ product }: any) {
   const dispatch = useDispatch();
   const addProduct = async () => {
     const { id, price } = product;
     product.quantity = 1;
-
     const cartItem: any = {
       productId: id,
       totalPrice: price + "",
     };
 
-    dispatch(saveItem(cartItem));
+    const res = await dispatch(saveItem(cartItem));
+    const result = await unwrapResult(res);
+    const { id: cartItemId } = result;
+    product.cartItemId = cartItemId;
     dispatch(addToCart(product));
   };
   return (

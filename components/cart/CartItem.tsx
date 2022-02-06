@@ -3,13 +3,16 @@ import {
   removeItem,
   increaseQuantity,
   desIncreaseQuantity,
+  deleteItem,
 } from "../../features/shoppingCart/cart-slice";
 import { useDispatch } from "react-redux";
 function CartItem({ product }) {
   //remove cartitem
   const dispatch = useDispatch();
+
   const remove = () => {
-    dispatch(removeItem(product.id));
+    dispatch(deleteItem);
+    dispatch(removeItem(product.cartItemId));
   };
 
   //increase quantity of product inside cartitem
