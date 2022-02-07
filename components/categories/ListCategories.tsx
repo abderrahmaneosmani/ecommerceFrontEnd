@@ -17,7 +17,7 @@ export default function ListCategories({ sections }) {
                   htmlFor={`filter-${category.id}-${categoryIdx}`}
                   className="ml-3 text-sm text-gray-600"
                 >
-                  {category.name}
+                  {category.title}
                 </label>
               </div>
             </Link>

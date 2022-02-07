@@ -65,6 +65,10 @@ export const authSliceFirebase = createSlice({
     });
     builder.addCase(Logout.fulfilled, (state) => {
       state.email = "";
+      state.authenticated = false;
+      state.displayName = "";
+
+      localStorage.removeItem("user");
     });
   },
 });

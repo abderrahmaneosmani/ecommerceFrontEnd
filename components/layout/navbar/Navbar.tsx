@@ -1,28 +1,34 @@
 import React, { useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+import { ShoppingBagIcon } from "@heroicons/react/outline";
+
 import {
   faQuestionCircle,
   faBell,
   faBars,
   faTimes,
-  faShoppingBag,
 } from "@fortawesome/free-solid-svg-icons";
-
-import Avatar from "./Avatar";
 import Link from "next/link";
+import Settings from "./Setting";
+import { isUserAuthenticatedSelector } from "../../../features/auth/auth";
+import { useSelector } from "../../../app/store";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const authenticated = useSelector(isUserAuthenticatedSelector);
+  const cart = useSelector((state) => state.cartItem);
+  const count = cart.cartItems.length;
 
   return (
-    <div className="flex items-center h-20 px-6 justify-between border-b border-gray-300 bg-blue-800 text-white relative z-50">
-      <div className="h-8">
-        <img
-          src="https://gustui.s3.amazonaws.com/Gust+Logo+White.png"
-          className="h-full"
-        />
-      </div>
-      <div className="flex-1 ml-10 items-center hidden lg:flex">
+    <div className="flex items-center h-20 px-6 justify-between border-b border-gray-300 bg-cyan-600 text-white relative z-50">
+      <div className=" flex-1 ml-10 items-center hidden lg:flex">
+        <div className="h-8 mx-4">
+          <img
+            className="h-8 w-auto sm:h-10"
+            src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
+          />
+        </div>
         <Link href="/categories">
           <a className="no-underline px-2 mr-3 text-gray-200 font-medium hover:text-blue-400">
             Women
@@ -36,22 +42,30 @@ function Navbar() {
         </Link>
       </div>
       <div className="items-center hidden lg:flex">
+        {!authenticated && (
+          <>
+            <Link href="/auth/login">
+              <a className="px-4">Sign In</a>
+            </Link>
+            <Link href="/auth/register">
+              <a className="px-4">Register</a>
+            </Link>
+          </>
+        )}
         <Link href="/cart/cart">
-          <FontAwesomeIcon
-            icon={faShoppingBag}
-            className="ml-6 text-2xl cursor-pointer"
-          />
+          <div className="ml-4 flow-root lg:ml-6">
+            <a className="group -m-2 p-2 flex items-center ">
+              <ShoppingBagIcon
+                className="flex-shrink-0 h-6 w-6 text-white-400 group-hover:text-gray-500"
+                aria-hidden="true"
+              />
+              <span className="ml-1 text-sm font-medium text-white-700 group-hover:text-gray-800">
+                {count}
+              </span>
+            </a>
+          </div>
         </Link>
-
-        <FontAwesomeIcon
-          icon={faBell}
-          className="ml-6 text-2xl cursor-pointer"
-        />
-        <Avatar
-          image="https://picsum.photos/id/237/200/200.jpg"
-          status="online"
-          className="ml-6 cursor-pointer"
-        />
+        {authenticated && <Settings />}
       </div>
       <FontAwesomeIcon
         icon={mobileOpen ? faTimes : faBars}
@@ -79,6 +93,7 @@ function Navbar() {
             >
               Bones
             </a>
+
             <a
               href="#"
               className="no-underline px-2 my-2 text-gray-200 font-medium hover:text-blue-400"
@@ -94,12 +109,8 @@ function Navbar() {
                 icon={faBell}
                 className="text-2xl mx-2 cursor-pointer"
               />
+              {authenticated && <Settings />}
             </div>
-            <Avatar
-              image="https://picsum.photos/id/237/200/200.jpg"
-              status="online"
-              className="cursor-pointer my-2"
-            />
           </div>
         </div>
       )}

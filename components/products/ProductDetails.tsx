@@ -2,16 +2,23 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { saveItem, addToCart } from "../../features/shoppingCart/cart-slice";
 import { unwrapResult } from "@reduxjs/toolkit";
+import getUserId from "../../utils/getUserId";
 
 function ProductDetails({ product }: any) {
   const dispatch = useDispatch();
   const addProduct = async () => {
     const { id, price, image } = product;
+    let userId = "null";
 
+    const myUserId = getUserId();
+    if (userId && userId !== null) {
+      userId = myUserId;
+    }
     const cartItem: any = {
       productId: id,
       totalPrice: price + "",
       image,
+      userId,
     };
 
     const res = await dispatch(saveItem(cartItem));

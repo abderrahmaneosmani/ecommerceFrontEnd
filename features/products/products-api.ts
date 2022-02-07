@@ -66,4 +66,5 @@ export const {
   useGetProductsByCategoryIdQuery,
   useUpdateProductMutation,
   useGetProductByIdQuery,
+  usePrefetch,
 } = productApi;

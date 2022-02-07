@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { stat } from "fs";
 import authHeader from "../auth/auth-header";
 const token = authHeader();
 
@@ -29,10 +28,10 @@ const getIndexItem = (state: cart, id: string): number => {
 export const getAllCartItems = createAsyncThunk(
   "getAllCartItem",
   async (req: any, thunkAPI) => {
-    const userId = req.userId;
+    const userId = req;
 
     const response = await fetch(
-      `http://localhost:9000/cartitems/61dab736adc857e17c58c1d4`
+      `http://localhost:9000/cartitems?userId=${userId}`
     );
     const cartitems = await response.json();
     if (!cartitems) {
@@ -140,7 +139,7 @@ const cartSlice = createSlice({
     });
     builder.addCase(getAllCartItems.fulfilled, (state, action: any) => {
       state.cartItems = action.payload;
-      // localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
+      localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
     });
     builder.addCase(deleteItem.fulfilled, (state: any, action) => {
       const mycart = state.cartItems.filter(

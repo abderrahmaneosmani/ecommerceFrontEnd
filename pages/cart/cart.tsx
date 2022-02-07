@@ -1,11 +1,22 @@
 import Link from "next/link";
-import React from "react";
+import React, { useEffect } from "react";
 import ListCart from "../../components/cart/ListCart";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllCartItems } from "../../features/shoppingCart/cart-slice";
+import getUserId from "../../utils/getUserId";
 
 function cart() {
+  const userId = getUserId();
+  const dipatch = useDispatch();
+
   // eslint-disable-next-line react-hooks/rules-of-hooks
+  useEffect(() => {
+    if (userId && userId !== null) {
+      dipatch(getAllCartItems(userId));
+    }
+  }, []);
   const cart = useSelector((state) => state.cartItem);
+
   const getTotalPrice = () => {
     return cart.cartItems.reduce(
       (accumulator, item) => accumulator + item.quantity * item.totalPrice,
