@@ -7,8 +7,6 @@ import {
 } from "../../features/shoppingCart/cart-slice";
 import { useDispatch } from "react-redux";
 function CartItem({ item }) {
-  console.log("item is", item);
-
   //remove cartitem
   const dispatch = useDispatch();
 
@@ -19,10 +17,10 @@ function CartItem({ item }) {
 
   //increase quantity of item inside cartitem
   const incrementQuantity = () => {
-    dispatch(increaseQuantity(item.id));
+    dispatch(increaseQuantity(item.productId));
   };
   const decrementQuantity = () => {
-    dispatch(desIncreaseQuantity(item.id));
+    dispatch(desIncreaseQuantity(item.productId));
   };
 
   const totalPrice = +item.totalPrice * +item.quantity;

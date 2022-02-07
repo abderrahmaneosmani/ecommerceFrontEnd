@@ -22,7 +22,7 @@ const initialState: cart = {
 };
 
 const getIndexItem = (state: cart, id: string): number => {
-  const ids = state.cartItems.map((item: any) => item.id);
+  const ids = state.cartItems.map((item: any) => item.productId);
   return ids.indexOf(id);
 };
 
@@ -82,8 +82,6 @@ const cartSlice = createSlice({
   reducers: {
     addToCart(state: any, action: any) {
       const itemIndex = getIndexItem(state, action.payload.productId);
-      console.log("item index is", itemIndex);
-
       if (itemIndex && itemIndex < 0) {
         state.cartItems.push(action.payload);
       } else {
@@ -97,6 +95,7 @@ const cartSlice = createSlice({
     increaseQuantity: (state: any, action: any) => {
       const itemIndex = getIndexItem(state, action.payload);
       const oldItems = state.cartItems[itemIndex];
+      console.log("olditens", oldItems);
 
       oldItems.quantity += 1;
       state.cartItems[itemIndex] = oldItems;
@@ -125,12 +124,14 @@ const cartSlice = createSlice({
     },
 
     removeItem(state: any, action: PayloadAction<any>) {
-      state.cartQuantity += -1;
+      console.log(action.payload);
+
       const mycart: any = state.cartItems.filter(
-        (cart: any) => cart.cartItemId !== action.payload
+        (cart: any) => cart.id !== action.payload
       );
+
       state.cartItems = mycart;
-      localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
+      // localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
     },
   },
   extraReducers: (builder) => {
@@ -143,7 +144,7 @@ const cartSlice = createSlice({
     });
     builder.addCase(deleteItem.fulfilled, (state: any, action) => {
       const mycart = state.cartItems.filter(
-        (item: any) => item.cartItemId !== action.payload.cartItemId
+        (item: any) => item.id !== action.payload
       );
       state.cartItems = mycart;
       localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
