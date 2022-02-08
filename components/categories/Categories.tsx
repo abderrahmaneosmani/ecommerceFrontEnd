@@ -10,13 +10,19 @@ import {
 } from "@heroicons/react/solid";
 import ProductList from "../products/ProductsList";
 import ListCategories from "./ListCategories";
+import Link from "next/link";
 
 const sortOptions = [
-  { name: "Most Popular", href: "#", current: true },
-  { name: "Best Rating", href: "#", current: false },
-  { name: "Newest", href: "#", current: false },
-  { name: "Price: Low to High", href: "#", current: false },
-  { name: "Price: High to Low", href: "#", current: false },
+  {
+    name: "Best Rating",
+    href: "http://localhost:3000/products/sorts/rating",
+    current: false,
+  },
+  {
+    name: "Price: High to Low",
+    href: "http://localhost:3000/products/sorts/price",
+    current: false,
+  },
 ];
 
 const filters = [
@@ -183,18 +189,19 @@ export default function Categories({ products, sections }) {
                       {sortOptions.map((option) => (
                         <Menu.Item key={option.name}>
                           {({ active }) => (
-                            <a
-                              href={option.href}
-                              className={classNames(
-                                option.current
-                                  ? "font-medium text-gray-900"
-                                  : "text-gray-500",
-                                active ? "bg-gray-100" : "",
-                                "block px-4 py-2 text-sm"
-                              )}
-                            >
-                              {option.name}
-                            </a>
+                            <Link href={option.href}>
+                              <a
+                                className={classNames(
+                                  option.current
+                                    ? "font-medium text-gray-900"
+                                    : "text-gray-500",
+                                  active ? "bg-gray-100" : "",
+                                  "block px-4 py-2 text-sm"
+                                )}
+                              >
+                                {option.name}
+                              </a>
+                            </Link>
                           )}
                         </Menu.Item>
                       ))}
