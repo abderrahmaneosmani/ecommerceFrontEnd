@@ -26,9 +26,11 @@ function cart() {
 
   return (
     <>
-      <h2>cart is </h2>
-
-      <ListCart products={cart.cartItems} totalPrice={getTotalPrice()} />
+      <ListCart
+        products={cart.cartItems}
+        totalPrice={getTotalPrice()}
+        handleOpen={true}
+      />
 
       <Link href="/">Go back</Link>
     </>

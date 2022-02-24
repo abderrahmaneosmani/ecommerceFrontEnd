@@ -13,6 +13,7 @@ import Settings from "./Setting";
 import { isUserAuthenticatedSelector } from "../../../features/auth/auth";
 import { useSelector } from "../../../app/store";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Search from "./Search";
 
 function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -22,6 +23,8 @@ function Navbar() {
 
   return (
     <div className="flex items-center h-20 px-6 justify-between border-b border-gray-300 bg-cyan-600 text-white relative z-50">
+      <Search />
+
       <div className=" flex-1 ml-10 items-center hidden lg:flex">
         <div className="h-8 mx-4">
           <img
@@ -29,18 +32,8 @@ function Navbar() {
             src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
           />
         </div>
-        <Link href="/categories">
-          <a className="no-underline px-2 mr-3 text-gray-200 font-medium hover:text-blue-400">
-            Women
-          </a>
-        </Link>
-
-        <Link href="/categories">
-          <a className="no-underline px-2 mr-3 font-medium hover:text-blue-400">
-            Men
-          </a>
-        </Link>
       </div>
+
       <div className="items-center hidden lg:flex">
         {!authenticated && (
           <>
@@ -75,31 +68,34 @@ function Navbar() {
       {mobileOpen && (
         <div className="bg-blue-800 absolute top-full left-0 flex flex-col w-full pb-8 lg:hidden">
           <div className="flex-1 flex flex-col items-center text-xl">
-            <a
-              href="#"
-              className="no-underline px-2 my-2 text-gray-200 font-medium hover:text-blue-400"
-            >
-              Home
-            </a>
-            <a
-              href="#"
-              className="no-underline px-2 my-2 font-medium hover:text-blue-400"
-            >
-              Dogs
-            </a>
-            <a
-              href="#"
-              className="no-underline px-2 my-2 text-gray-200 font-medium hover:text-blue-400"
-            >
-              Bones
+            {!authenticated && (
+              <>
+                <Link href="/auth/login">
+                  <a className="px-4">Sign In</a>
+                </Link>
+                <Link href="/auth/register">
+                  <a className="px-4">Register</a>
+                </Link>
+              </>
+            )}
+
+            <a>
+              <Link href="/cart/cart">
+                <div className="ml-4 flow-root lg:ml-6">
+                  <a className="group -m-2 p-2 flex items-center ">
+                    <ShoppingBagIcon
+                      className="flex-shrink-0 h-6 w-6 text-white-400 group-hover:text-gray-500"
+                      aria-hidden="true"
+                    />
+                    <span className="ml-1 text-sm font-medium text-white-700 group-hover:text-gray-800">
+                      {count}
+                    </span>
+                  </a>
+                </div>
+              </Link>
+              {authenticated && <Settings />}
             </a>
 
-            <a
-              href="#"
-              className="no-underline px-2 my-2 text-gray-200 font-medium hover:text-blue-400"
-            >
-              Settings
-            </a>
             <div className="my-2 flex justify-center">
               <FontAwesomeIcon
                 icon={faQuestionCircle}

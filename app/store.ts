@@ -7,6 +7,8 @@ import { authSliceFirebase } from "../features/firebase/firebase-reducer";
 import { TypedUseSelectorHook } from "react-redux";
 import cartSlice from "../features/shoppingCart/cart-slice";
 import { getAllCartItems } from "../features/shoppingCart/cart-slice";
+import search from "../features/products/search";
+
 export const store = configureStore({
   reducer: {
     cartItem: cartSlice,
@@ -14,6 +16,7 @@ export const store = configureStore({
     firebase: authSliceFirebase.reducer,
     [productApi.reducerPath]: productApi.reducer,
     [categoryApi.reducerPath]: categoryApi.reducer,
+    search: search,
   },
 
   middleware: (getDefaultMiddleware) =>
