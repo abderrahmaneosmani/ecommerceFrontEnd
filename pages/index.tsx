@@ -7,10 +7,7 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "../app/store";
 import Categories from "../components/categories/Categories";
 import { useGetAllCategoriesQuery } from "../features/categories/categories-api";
-import {
-  useGetAllProductsQuery,
-  useSearchProductQuery,
-} from "../features/products/products-api";
+import { useGetAllProductsQuery } from "../features/products/products-api";
 import { emptyQuery } from "../features/products/search";
 import styles from "../styles/Home.module.css";
 const Home: NextPage = () => {
@@ -42,6 +39,7 @@ const Home: NextPage = () => {
   if (s.length === 1) {
     dispatch(emptyQuery());
   }
+
   return (
     <div className={styles.container}>
       <Categories products={products} sections={sections} />

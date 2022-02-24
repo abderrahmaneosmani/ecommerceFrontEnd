@@ -25,7 +25,6 @@ export const productApi = createApi({
   endpoints: (builder) => ({
     getAllProducts: builder.query({
       query: (search: string) => `products?s=${search}`,
-      headers: Headers,
     }),
     getProductsByCategoryId: builder.query({
       query: (categoryId: string) => `products?categoryId=${categoryId}`,
@@ -58,10 +57,6 @@ export const productApi = createApi({
       },
       invalidatesTags: ["Product"],
     }),
-    searchProduct: builder.query({
-      query: (search: string) => `products/search?s=${search}`,
-      // providesTags: ["Product"],
-    }),
   }),
 });
 export const {
@@ -70,6 +65,5 @@ export const {
   useGetProductsByCategoryIdQuery,
   useUpdateProductMutation,
   useGetProductByIdQuery,
-  useSearchProductQuery,
   usePrefetch,
 } = productApi;
