@@ -1,6 +1,6 @@
 import React from "react";
 
-function Rating({ count }) {
+function Rating({ count }: any) {
   const arrayLength = Number(count);
 
   return (

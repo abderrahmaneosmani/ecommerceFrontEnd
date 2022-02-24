@@ -1,7 +1,7 @@
 import React from "react";
 import ProductList from "../../../components/products/ProductsList";
 
-function sortProducts({ products }) {
+function sortProducts({ products }: any) {
   return (
     <div>
       <div>

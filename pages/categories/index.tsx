@@ -1,7 +1,7 @@
 import React from "react";
 import Categories from "../../components/categories/Categories";
 
-function categories({ products, sections }) {
+function categories({ products, sections }: any) {
   return <Categories products={products} sections={sections} />;
 }
 

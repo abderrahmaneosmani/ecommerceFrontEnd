@@ -2,7 +2,7 @@ import { Disclosure } from "@headlessui/react";
 import Link from "next/link";
 import React from "react";
 
-export default function ListCategories({ sections }) {
+export default function ListCategories({ sections }: any) {
   return (
     <div>
       <Disclosure.Panel className="pt-6">

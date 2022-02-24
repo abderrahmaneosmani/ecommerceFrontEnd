@@ -22,7 +22,7 @@ function ProductDetails({ product }: any) {
       userId,
     };
 
-    const res = await dispatch(saveItem(cartItem));
+    const res: any = await dispatch(saveItem(cartItem));
     const result: any = await unwrapResult(res);
     dispatch(addToCart(result));
   };

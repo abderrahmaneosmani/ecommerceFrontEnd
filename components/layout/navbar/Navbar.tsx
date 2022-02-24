@@ -42,7 +42,8 @@ function Navbar() {
 
   const getTotalPrice = () => {
     return cart.cartItems.reduce(
-      (accumulator, item) => accumulator + item.quantity * item.totalPrice,
+      (accumulator: any, item: any) =>
+        accumulator + item.quantity * item.totalPrice,
       0
     );
   };

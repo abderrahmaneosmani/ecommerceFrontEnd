@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import React from "react";
 import { Form, Input, Button, Divider } from "antd";
 import { loginPopUp, signIn } from "../../features/auth/auth-slice";

@@ -5,9 +5,8 @@ import Avatar from "./Avatar";
 import { Logout } from "../../../features/firebase/firebase-reducer";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/router";
-import { route } from "next/dist/server/router";
 
-function classNames(...classes) {
+function classNames(...classes: any) {
   return classes.filter(Boolean).join(" ");
 }
 

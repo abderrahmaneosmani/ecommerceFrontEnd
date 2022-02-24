@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/dist/query/react";
+import build from "next/dist/build";
 import authHeader from "../auth/auth-header";
 const token = authHeader();
 const myHeaders = new Headers();
@@ -34,13 +35,13 @@ export const productApi = createApi({
       query: (productId: string) => `products?${productId}`,
       providesTags: ["Product"],
     }),
-    addProduct: builder.mutation({
-      query(data: any) {
+    addProduct: builder.mutation<void, Product>({
+      query(body: any) {
         return {
           url: "products",
           method: "POST",
-          body: data,
-          headers: Headers,
+          body,
+          Headers,
         };
       },
       invalidatesTags: ["Product"],

@@ -4,7 +4,12 @@ import { Dialog, Transition } from "@headlessui/react";
 import { XIcon } from "@heroicons/react/outline";
 import CartItem from "./CartItem";
 
-export default function ListCart({ products, totalPrice, open, handleOpen }) {
+export default function ListCart({
+  products,
+  totalPrice,
+  open,
+  handleOpen,
+}: any) {
   return (
     <>
       <Transition.Root show={open} as={Fragment}>
@@ -61,7 +66,7 @@ export default function ListCart({ products, totalPrice, open, handleOpen }) {
                             role="list"
                             className="-my-6 divide-y divide-gray-200"
                           >
-                            {products.map((product) => (
+                            {products.map((product: any) => (
                               // eslint-disable-next-line react/jsx-key
                               <CartItem item={product} />
                             ))}

@@ -1,7 +1,7 @@
 import React from "react";
 import ProductList from "../../../components/products/ProductsList";
 
-function getProductByCategoryId({ products }) {
+function getProductByCategoryId({ products }: any) {
   return (
     <div>
       <div>

@@ -39,11 +39,11 @@ const filters = [
   },
 ];
 
-function classNames(...classes) {
+function classNames(...classes: any) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Categories({ products, sections }) {
+export default function Categories({ products, sections }: any) {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
 
   return (

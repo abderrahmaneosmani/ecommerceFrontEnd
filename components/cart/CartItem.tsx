@@ -6,7 +6,7 @@ import {
   deleteItem,
 } from "../../features/shoppingCart/cart-slice";
 import { useDispatch } from "react-redux";
-function CartItem({ item }) {
+function CartItem({ item }: any) {
   //remove cartitem
   const dispatch = useDispatch();
 
