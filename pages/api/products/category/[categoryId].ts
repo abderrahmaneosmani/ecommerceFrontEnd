@@ -1,4 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
+import server from "../../../../utils/vars";
 
 export default async function handler(
   req: NextApiRequest,
@@ -9,9 +10,7 @@ export default async function handler(
   // eslint-disable-next-line react-hooks/rules-of-hooks
   // const { data, isSuccess } = useGetProductsByCategoryIdQuery(categoryId);
 
-  const response = await fetch(
-    `http://localhost:9000/products?categoryId=${categoryId}`
-  );
+  const response = await fetch(`${server}/products?categoryId=${categoryId}`);
   const products = await response.json();
   res.send(products);
 }

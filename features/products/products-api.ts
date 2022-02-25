@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/dist/query/react";
 import build from "next/dist/build";
+import server from "../../utils/vars";
 import authHeader from "../auth/auth-header";
 const token = authHeader();
 const myHeaders = new Headers();
@@ -15,7 +16,7 @@ myHeaders.append("Authorization", `Bearer ${token}`);
 export const productApi = createApi({
   reducerPath: "products",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:9000/",
+    baseUrl: `${server}/`,
     prepareHeaders(headers) {
       headers.set("authorization", `Bearer ${token}`);
       return headers;

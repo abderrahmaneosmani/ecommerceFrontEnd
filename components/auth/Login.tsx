@@ -16,7 +16,6 @@ function test() {
   const onFinish = (values: any) => {
     const { username, password } = values;
     const user = { username, password };
-    console.log(values);
 
     const response: any = dispatch(signIn(user));
     if (authenticated) {

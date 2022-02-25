@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import server from "../../utils/vars";
 import authHeader from "../auth/auth-header";
 const token = authHeader();
 
@@ -47,7 +48,7 @@ export const saveItem = createAsyncThunk(
 
     var config: any = {
       method: "post",
-      url: "http://localhost:9000/cartitems",
+      url: `${server}/cartitems`,
       headers: {
         Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",

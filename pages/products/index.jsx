@@ -1,5 +1,6 @@
 import React from "react";
 import ProductList from "../../components/products/ProductsList";
+import server from "../../utils/vars";
 function products({ products }) {
   return (
     <div>
@@ -8,7 +9,7 @@ function products({ products }) {
   );
 }
 export const getStaticProps = async () => {
-  const res = await fetch("http://localhost:3000/api/products");
+  const res = await fetch(`${server}/products`);
   const products = await res.json();
 
   return {

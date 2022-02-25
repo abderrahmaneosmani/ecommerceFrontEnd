@@ -9,13 +9,13 @@ import { getStorage, ref, getDownloadURL } from "firebase/storage";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 export const firebaseConfig = {
-  apiKey: "AIzaSyDevzrAJaf563oj1Yic_N_o9Ktd28o-zhc",
-  authDomain: "e-commerce-8b99c.firebaseapp.com",
-  projectId: "e-commerce-8b99c",
-  storageBucket: "e-commerce-8b99c.appspot.com",
-  messagingSenderId: "365269067699",
-  appId: "1:365269067699:web:70ea6b61d5864108a7cdc6",
-  measurementId: "G-ZZ1LLQZXLM",
+  apiKey: "AIzaSyDxCW_O4OuAJTo4b0CKn9ZoYtXXCJ_2PpI",
+  authDomain: "portfolio-9a3ea.firebaseapp.com",
+  projectId: "portfolio-9a3ea",
+  storageBucket: "portfolio-9a3ea.appspot.com",
+  messagingSenderId: "541567822675",
+  appId: "1:541567822675:web:e95b9479107a5f29160fa6",
+  measurementId: "G-KY7Q7FRZ1N",
 };
 const app = initializeApp(firebaseConfig);
 const storage = getStorage(app);

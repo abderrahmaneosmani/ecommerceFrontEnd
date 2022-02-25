@@ -6,7 +6,6 @@ import { useCreateUserMutation } from "../../features/users/user-api-slice";
 import { isUserAuthenticatedSelector } from "../../features/auth/auth";
 import { loginPopUp } from "../../features/auth/auth-slice";
 import { useSelector } from "../../app/store";
-import { singWithPopup } from "../../features/firebase/firebase-reducer";
 import Link from "next/link";
 
 const Register = () => {

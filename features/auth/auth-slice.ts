@@ -11,6 +11,7 @@ import authHeader from "./auth-header";
 
 import { GoogleAuthProvider, signInWithPopup } from "@firebase/auth";
 import { Logout } from "../firebase/firebase-reducer";
+import server from "../../utils/vars";
 const app = initializeApp(firebaseConfig);
 const provider = new GoogleAuthProvider();
 let user = [];
@@ -63,7 +64,7 @@ export const signIn = createAsyncThunk("signIn", async (req: any, thunkAPI) => {
 
     const response = await axios({
       method: "post",
-      url: " http://localhost:9000/auth/login",
+      url: `${server}/auth/login`,
       data: {
         username,
         password,
