@@ -1,5 +1,4 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/dist/query/react";
-import build from "next/dist/build";
 import server from "../../utils/vars";
 import authHeader from "../auth/auth-header";
 const token = authHeader();
