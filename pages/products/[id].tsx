@@ -10,7 +10,9 @@ function getProductById({ product }: any) {
 }
 export const getServerSideProps = async (context: any) => {
   const id = context.params.id;
-  const res = await fetch(`http://localhost:3000/api/products/${id}`);
+  const res = await fetch(
+    `https://ecommerce-front-end-1cco9v8el-abderrahmaneosmani.vercel.app/api/products/${id}`
+  );
   const product = await res.json();
 
   return {
