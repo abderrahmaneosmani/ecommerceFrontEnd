@@ -17,7 +17,7 @@ function Search() {
           value={input}
           onInput={(e: any) => setInput(e.target.value)}
           type="search"
-          className="text-black w-full max-w-full border border-gray-300 rounded-sm pr-4 pl-10 py-3 outline-none transition-colors duration-150 ease-in-out focus:border-blue-400"
+          className="text-black w-80  sm:w-full max-w-full border border-gray-300 rounded-sm pr-4 pl-10 py-3 outline-none transition-colors duration-150 ease-in-out focus:border-blue-400"
           placeholder="Search for something..."
         />
       </form>

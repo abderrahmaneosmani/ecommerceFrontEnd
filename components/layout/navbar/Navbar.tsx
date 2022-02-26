@@ -49,7 +49,7 @@ function Navbar() {
   };
 
   return (
-    <div className="z-0 flex items-center h-20 px-6 justify-between border-b border-gray-300 bg-cyan-600 text-white relative z-50">
+    <div className="z-0 flex items-center h-20 px-6 justify-between border-b border-gray-300 bg-cyan-600 text-white relative ">
       <Search />
 
       <div className=" flex-1 ml-10 items-center hidden lg:flex">
@@ -102,7 +102,7 @@ function Navbar() {
         className="text-white text-3xl cursor-pointer lg:hidden"
       />
       {mobileOpen && (
-        <div className="bg-blue-800 absolute top-full left-0 flex flex-col w-full pb-8 lg:hidden">
+        <div className="bg-cyan-600 absolute top-full left-0 flex flex-col w-full pb-8 lg:hidden">
           <div className="flex-1 flex flex-col items-center text-xl">
             {!authenticated && (
               <>
@@ -115,32 +115,25 @@ function Navbar() {
               </>
             )}
 
-            <a>
-              <Link href="/cart/cart">
-                <div className="ml-4 flow-root lg:ml-6">
-                  <a className="group -m-2 p-2 flex items-center ">
-                    <ShoppingBagIcon
-                      className="flex-shrink-0 h-6 w-6 text-white-400 group-hover:text-gray-500"
-                      aria-hidden="true"
-                    />
-                    <span className="ml-1 text-sm font-medium text-white-700 group-hover:text-gray-800">
-                      {count}
-                    </span>
-                  </a>
-                </div>
-              </Link>
+            <a className="group -m-2 p-2 flex items-center ">
+              <ShoppingBagIcon
+                className="flex-shrink-0 h-6 w-6 text-white-400 group-hover:text-gray-500"
+                aria-hidden="true"
+                onClick={handleOpen}
+              />
+              <span className="ml-1 text-sm font-medium text-white-700 group-hover:text-gray-800">
+                {count}
+              </span>
+              <ListCart
+                products={cart.cartItems}
+                totalPrice={getTotalPrice()}
+                open={open}
+                handleOpen={handleOpen}
+              />
               {authenticated && <Settings />}
             </a>
 
             <div className="my-2 flex justify-center">
-              <FontAwesomeIcon
-                icon={faQuestionCircle}
-                className="text-2xl mx-2 cursor-pointer"
-              />
-              <FontAwesomeIcon
-                icon={faBell}
-                className="text-2xl mx-2 cursor-pointer"
-              />
               {authenticated && <Settings />}
             </div>
           </div>
