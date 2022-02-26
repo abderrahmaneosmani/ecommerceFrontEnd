@@ -53,12 +53,16 @@ function Navbar() {
       <Search />
 
       <div className=" flex-1 ml-10 items-center hidden lg:flex">
-        <div className="h-8 mx-4">
-          <img
-            className="h-8 w-auto sm:h-10"
-            src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
-          />
-        </div>
+        <Link href="/">
+          <a>
+            <div className="h-8 mx-4">
+              <img
+                className="h-8 w-auto sm:h-10"
+                src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
+              />
+            </div>
+          </a>
+        </Link>
       </div>
 
       <div className="items-center hidden lg:flex">

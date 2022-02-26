@@ -31,9 +31,7 @@ export const getAllCartItems = createAsyncThunk(
   async (req: any, thunkAPI) => {
     const userId = req;
 
-    const response = await fetch(
-      `http://localhost:9000/cartitems?userId=${userId}`
-    );
+    const response = await fetch(`${server}/cartitems?userId=${userId}`);
     const cartitems = await response.json();
     if (!cartitems) {
       throw "error";
@@ -66,12 +64,9 @@ export const deleteItem = createAsyncThunk(
   "deleteItem",
   async (req: any, thunkAPI) => {
     const cartItemId = req;
-    const response = await fetch(
-      `http://localhost:9000/cartitems/${cartItemId}`,
-      {
-        method: "DELETE",
-      }
-    );
+    const response = await fetch(`${server}/cartitems/${cartItemId}`, {
+      method: "DELETE",
+    });
     return response.json();
   }
 );
