@@ -11,16 +11,17 @@ import {
 import ProductList from "../products/ProductsList";
 import ListCategories from "./ListCategories";
 import Link from "next/link";
+import { NEXT_URL } from "../../utils/vars";
 
 const sortOptions = [
   {
     name: "Best Rating",
-    href: "http://localhost:3000/products/sorts/rating",
+    href: `${NEXT_URL}/products/sorts/rating`,
     current: false,
   },
   {
     name: "Price: High to Low",
-    href: "http://localhost:3000/products/sorts/price",
+    href: `${NEXT_URL}/products/sorts/price`,
     current: false,
   },
 ];
