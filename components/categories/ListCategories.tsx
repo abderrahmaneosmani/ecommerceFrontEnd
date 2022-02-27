@@ -10,7 +10,9 @@ export default function ListCategories({ sections }: any) {
         <div className="space-y-4">
           {sections.map((category: any, categoryIdx: any) => (
             // eslint-disable-next-line react/jsx-key
-            <Link href={`${NEXT_URL}/products/category/${category.id}`}>
+            <Link
+              href={`https://ecommerce-front-end-six.vercel.app/products/category/${category.id}`}
+            >
               <div key={category.value} className="flex items-center">
                 <label
                   htmlFor={`filter-${category.id}-${categoryIdx}`}
