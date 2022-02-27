@@ -1,6 +1,7 @@
 import { Disclosure } from "@headlessui/react";
 import Link from "next/link";
 import React from "react";
+import { NEXT_URL } from "../../utils/vars";
 
 export default function ListCategories({ sections }: any) {
   return (
@@ -9,9 +10,7 @@ export default function ListCategories({ sections }: any) {
         <div className="space-y-4">
           {sections.map((category: any, categoryIdx: any) => (
             // eslint-disable-next-line react/jsx-key
-            <Link
-              href={`http://localhost:3000/products/category/${category.id}`}
-            >
+            <Link href={`${NEXT_URL}/products/category/${category.id}`}>
               <div key={category.value} className="flex items-center">
                 <label
                   htmlFor={`filter-${category.id}-${categoryIdx}`}
