@@ -8,7 +8,6 @@ export default async function handler(
   const sort = req.query.sort;
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  // const { data, isSuccess } = useGetProductsByCategoryIdQuery(categoryId);
 
   const response = await fetch(`${server}/products/sort?sort=${sort}`);
   const product = await response.json();
