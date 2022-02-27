@@ -1,4 +1,5 @@
 import React from "react";
+import Rating from "./Rating";
 function ProductItem({ product }: any) {
   return (
     <div key={product.id} className="group relative">
@@ -17,9 +18,18 @@ function ProductItem({ product }: any) {
               {product.title}
             </a>
           </h3>
+          <p className="text-gray-700 font-bold text-xl">
+            ${product.price.toFixed(2)}
+            <div className="flex items-center mt-2.5 mb-5">
+              <Rating count={product.rating} />
+
+              <span className="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ml-3">
+                {product.rating}
+              </span>
+            </div>
+          </p>
           {/* <p className="mt-1 text-sm text-gray-500">{product.color}</p> */}
         </div>
-        <p className="text-sm font-medium text-gray-900">{product.price}</p>
       </div>
     </div>
   );
