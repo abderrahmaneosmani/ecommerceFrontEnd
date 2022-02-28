@@ -13,7 +13,9 @@ function getProductByCategoryId({ products }: any) {
 }
 export const getServerSideProps = async (context: any) => {
   const categoryId = context.params.id;
-  const response = await fetch(`${server}/products?categoryId=${categoryId}`);
+  const response = await fetch(
+    `${server}/products/category?categoryId=${categoryId}`
+  );
   const products = await response.json();
   return {
     props: {
