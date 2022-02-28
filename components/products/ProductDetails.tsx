@@ -29,7 +29,7 @@ function ProductDetails({ product }: any) {
   return (
     <>
       <div className="max-w-2xl mx-auto">
-        <div className="bg-white shadow-md rounded-lg max-w-sm dark:bg-gray-800 dark:border-gray-700">
+        <div className="bg-white rounded-lg max-w-sm dark:bg-gray-800 dark:border-gray-700">
           <a href="#">
             <img
               className="rounded-t-lg p-8"

@@ -2,8 +2,8 @@ import React from "react";
 import Rating from "./Rating";
 function ProductItem({ product }: any) {
   return (
-    <div key={product.id} className="group relative">
-      <div className="w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
+    <div key={product.id} className="group relative ">
+      <div className="shadow-md w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
         <img
           src={product.image}
           alt={product.image}
